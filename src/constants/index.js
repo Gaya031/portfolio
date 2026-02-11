@@ -413,7 +413,7 @@ const ABOUT_LOCATION = {
 // =============================================================
 const RESUME_LOCATION = {
   id: 3,
-  type: "resume2",
+  type: "resume",
   name: "Resume",
   icon: "/icons/file.svg",
   kind: "folder",
