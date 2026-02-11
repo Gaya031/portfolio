@@ -228,9 +228,10 @@ const WORK_LOCATION = {
           fileType: "txt",
           position: "top-5 left-10",
           description: [
-            "A food listing + browsing app built with React Native.",
+            "A food listing + browsing web application built with React and Node + Express.",
             "Shows restaurants, dishes, filters, and real-time UX flow.",
             "Designed for clean UI and fast performance.",
+            "Developed to showcase the ability of media handling into the application."
           ],
         },
         {
