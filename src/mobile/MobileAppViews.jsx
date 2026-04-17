@@ -221,7 +221,7 @@ export const ResumeMobile = ({ onClose }) => {
           <p className="text-gray-500 mt-1">PDF Document</p>
         </div>
         <a
-          href="/files/resume2.pdf"
+          href="/files/Gaya_Singh_BD.pdf"
           download
           onClick={handleDownload}
           className="mt-4 px-8 py-3.5 bg-gray-900 text-white font-semibold rounded-full active:scale-95 transition-transform"
