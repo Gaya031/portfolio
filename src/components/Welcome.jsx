@@ -14,6 +14,8 @@ const renderText = (text, className, baseWeight = 400) => {
       className={className}
       style={{
         fontVariationSettings: `'wght' ${baseWeight}`,
+        display: "inline-block",
+        opacity: 0,
       }}
     >
       {char === " " ? "\u00A0" : char}
@@ -49,8 +51,8 @@ const setupTextHover = (container, type) => {
 
   const handleMouseLeave = () =>
     letters.forEach((letter) => animateLetter(letter, base, 0.3));
-    container.addEventListener("mousemove", handleMouseMove);
-    container.addEventListener("mouseleave", handleMouseLeave);
+  container.addEventListener("mousemove", handleMouseMove);
+  container.addEventListener("mouseleave", handleMouseLeave);
   return () => {
     container.removeEventListener("mousemove", handleMouseMove);
     container.removeEventListener("mouseleave", handleMouseLeave);
@@ -62,14 +64,53 @@ const Welcome = () => {
   const subtitleRef = useRef(null);
 
   useGSAP(() => {
-    const titleCleanup = setupTextHover(titleRef.current, "title");
-    const subTitleCleanup = setupTextHover(subtitleRef.current, "subtitle");
+    // --- Entrance: stagger each character in ---
+    const subtitleSpans = subtitleRef.current?.querySelectorAll("span") ?? [];
+    const titleSpans = titleRef.current?.querySelectorAll("span") ?? [];
 
-    return () => {
-      subTitleCleanup();
-      titleCleanup();
-    };
+    const tl = gsap.timeline({ delay: 0.15 });
+
+    // Subtitle chars stagger in (slide up + fade)
+    tl.fromTo(
+      subtitleSpans,
+      { opacity: 0, y: 20 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.5,
+        stagger: 0.03,
+        ease: "power3.out",
+      }
+    );
+
+    // Title chars stagger in with slight delay after subtitle
+    tl.fromTo(
+      titleSpans,
+      { opacity: 0, y: 40, fontVariationSettings: "'wght' 900" },
+      {
+        opacity: 1,
+        y: 0,
+        fontVariationSettings: "'wght' 400",
+        duration: 0.6,
+        stagger: 0.06,
+        ease: "power3.out",
+      },
+      "-=0.2"
+    );
+
+    // --- Hover interactions (set up after entrance) ---
+    tl.call(() => {
+      const titleCleanup = setupTextHover(titleRef.current, "title");
+      const subTitleCleanup = setupTextHover(subtitleRef.current, "subtitle");
+      // cleanup on unmount via return — we store on the tl call
+      gsap.ticker.add(function checkUnmount() {});
+      return () => {
+        subTitleCleanup();
+        titleCleanup();
+      };
+    });
   }, []);
+
   return (
     <section id="welcome">
       <p ref={subtitleRef}>

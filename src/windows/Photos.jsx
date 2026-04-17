@@ -41,6 +41,8 @@ const Photos = () => {
                     kind: "file",
                     FileType: "img",
                     imageUrl: img,
+                  }, {
+                    parentWindowKey: "photos",
                   })
                 }
               >

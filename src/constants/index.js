@@ -36,7 +36,7 @@ const dockApps = [
 const techStack = [
   {
     category: "Languages",
-    items: ["Python", "Java"],
+    items: ["Python", "Java", "SQL", "JavaScript"],
   },
   {
     category: "Frontend",
@@ -44,19 +44,19 @@ const techStack = [
   },
   {
     category: "Backend",
-    items: ["Node.js", "Express", "FastAPI"],
+    items: ["Node.js", "Express", "FastAPI", "REST"],
   },
-  {
-    category: "AI/ML",
-    items: ["LLMs", "LangChain", "Vector Search", "RAG Systems"],
-  },
+  // {
+  //   category: "AI/ML",
+  //   items: ["LLMs", "LangChain", "Vector Search", "RAG Systems"],
+  // },
   {
     category: "Databases",
-    items: ["PostgreSQL", "MongoDB", "PineCone"],
+    items: ["PostgreSQL", "MongoDB"],
   },
   {
     category: "DevOps",
-    items: ["Docker", "Redis", "Git", "GitHub"],
+    items: ["Docker", "Redis", "Git", "GitHub", "Vercel", "Render"],
   },
 ];
 
@@ -105,6 +105,8 @@ const gallery = [
   { id: 4, img: "/images/4.jpg" },
 ];
 
+const desktopPosition = (top, left) => ({ top, left });
+
 export {
   navLinks,
   navIcons,
@@ -128,11 +130,10 @@ const WORK_LOCATION = {
     // PROJECT 1 – Multi-vendor E-commerce
     {
       id: 5,
-      name: "Multi-vendor E-commerce Platform",
+      name: "RushCart - A MERN + FastAPI Multi-vendor E-commerce Marketplace",
       icon: "/images/folder.png",
       kind: "folder",
-      position: "top-15 left-8",
-      windowPosition: "top-[5vh] left-5",
+      desktopPosition: desktopPosition("5rem", "3.5rem"),
       children: [
         {
           id: 1,
@@ -142,9 +143,12 @@ const WORK_LOCATION = {
           fileType: "txt",
           position: "top-8 left-10",
           description: [
-            "A powerful, scalable multi-vendor marketplace built with MERN + FastAPI.",
-            "Supports seller onboarding, commissions, refund logic, order workflows, and admin controls.",
-            "Future-ready architecture with Redis, Docker, and AI integrations.",
+            "This project is RushCart, a hyperlocal multi-vendor e-commerce platform built as a monorepo. It supports four main roles: buyers, sellers, delivery partners, and admins. Buyers can browse stores/products, manage carts, place orders, track deliveries, use wallets, and leave reviews. Sellers can onboard, upload KYC, manage products and orders, and track earnings/subscriptions. Admins handle seller approvals, commissions, refunds, payouts, banners, subscriptions, and reporting. Delivery partners get their own delivery workflow with live tracking and navigation.",
+            "Architecturally, it has three parts:",
+
+            " - A FastAPI backend with APIs for auth, products, orders, payments, delivery, search, wallet, reviews, payouts, banners, and more via the codebase.",
+            " - A React + Vite frontend with separate routes and dashboards for buyer, seller, admin, and delivery users.",
+            " - A Node.js + Socket.IO delivery microservice for live delivery tracking, map routing, and realtime location updates.",
           ],
         },
         {
@@ -153,7 +157,7 @@ const WORK_LOCATION = {
           icon: "/images/safari.png",
           kind: "file",
           fileType: "url",
-          href: "#",
+          href: "https://rush-cart-ten.vercel.app/",
           position: "top-10 right-20",
         },
         {
@@ -163,7 +167,7 @@ const WORK_LOCATION = {
           kind: "file",
           fileType: "img",
           position: "top-52 right-80",
-          imageUrl: "Coming Soon",
+          imageUrl: "/images/rushcart.png",
         },
       ],
     },
@@ -174,8 +178,7 @@ const WORK_LOCATION = {
       name: "Linkly",
       icon: "/images/folder.png",
       kind: "folder",
-      position: "top-52 right-80",
-      windowPosition: "top-[20vh] left-7",
+      desktopPosition: desktopPosition("14rem", "3.5rem"),
       children: [
         {
           id: 1,
@@ -217,8 +220,7 @@ const WORK_LOCATION = {
       name: "Food-View",
       icon: "/images/folder.png",
       kind: "folder",
-      position: "top-55 left-58",
-      windowPosition: "top-[33vh] left-7",
+      desktopPosition: desktopPosition("23rem", "3.5rem"),
       children: [
         {
           id: 1,
@@ -261,8 +263,7 @@ const WORK_LOCATION = {
       name: "AI News Summarizer",
       icon: "/images/folder.png",
       kind: "folder",
-      position: "top-10 left-80",
-      windowPosition: "top-[40vh] left-25",
+      desktopPosition: desktopPosition("32rem", "3.5rem"),
       children: [
         {
           id: 1,
@@ -294,6 +295,85 @@ const WORK_LOCATION = {
           fileType: "img",
           imageUrl: "/images/news-summarizer.jpeg",
           position: "top-52 right-80",
+        },
+      ],
+    },
+    {
+      id: 9,
+      name: "PrepGenie - AI Powered Interview Preparation Platform",
+      icon: "/images/folder.png",
+      kind: "folder",
+      desktopPosition: desktopPosition("5rem", "13rem"),
+      children: [
+        {
+          id: 1,
+          name: "About.txt",
+          icon: "/images/txt.png",
+          kind: "file",
+          fileType: "txt",
+          position: "top-12 left-10",
+          description: [
+            "PrepGenie is a full-stack interview preparation app that helps a job seeker turn a resume plus a target job description into a personalized interview prep package. From the code, the core experience is: sign up/log in, upload a resume or write a short self-description, paste a job description, and generate an AI report with a match score, technical questions, behavioral questions, skill-gap tags, and a day-by-day preparation plan. The generated reports are saved per user and can be reopened later.",
+            "Technically, it’s a React + Vite frontend with route-protected pages and shared auth/interview context, backed by an Express/MongoDB API using JWT cookies for authentication. It sends the resume/self-description/job description to Groq, validates the structured JSON response with Zod, stores the result in MongoDB, and can also generate a tailored resume PDF through Puppeteer. So the short version is: this project is an AI-powered interview coach and report generator built as a MERN-style web app, with the currently implemented features centered on auth, report generation/history, detailed interview prep views, and downloadable tailored resume PDFs.",
+          ],
+        },
+        {
+          id: 2,
+          name: "Demo.link",
+          icon: "/images/safari.png",
+          kind: "file",
+          fileType: "url",
+          href: "#",
+          position: "top-10 right-20",
+        },
+        {
+          id: 3,
+          name: "Screenshot.png",
+          icon: "/images/image.png",
+          kind: "file",
+          fileType: "img",
+          position: "top-52 right-80",
+          imageUrl: "Coming Soon",
+        },
+      ],
+    },
+    {
+      id: 10,
+      name: "Karigar - A Local Services Marketplace Connecting Customers with Skilled Workers",
+      icon: "/images/folder.png",
+      kind: "folder",
+      desktopPosition: desktopPosition("14rem", "13rem"),
+      children: [
+        {
+          id: 1,
+          name: "About.txt",
+          icon: "/images/txt.png",
+          kind: "file",
+          fileType: "txt",
+          position: "top-8 left-10",
+          description: [
+            "this is a role-based service-booking platform where customers post repair jobs, workers discover and bid on nearby jobs, and admins manage marketplace operations.",
+            "It connects customers who need repair/home-service work with nearby workers or “karigars,” while giving admins tools to monitor jobs, disputes, users, ads, and platform revenue. The product positioning is “premium local repair dispatch,” with support for urgent job broadcasting, GPS-based worker matching, voice-first job details in local languages, wallet-based payments/fees, subscriptions, and trust/safety flows.",
+            "Tech-wise, it’s a React + Vite frontend and an Express + MongoDB backend, with Cloudinary for media uploads and Redis used around auth/session token handling.",
+          ],
+        },
+        {
+          id: 2,
+          name: "Demo.link",
+          icon: "/images/safari.png",
+          kind: "file",
+          fileType: "url",
+          href: "https://worklink-frontend-2hr4.onrender.com/app/worker/feed",
+          position: "top-10 right-20",
+        },
+        {
+          id: 3,
+          name: "Screenshot.png",
+          icon: "/images/image.png",
+          kind: "file",
+          fileType: "img",
+          position: "top-52 right-80",
+          imageUrl: "/images/karigar.png",
         },
       ],
     },
@@ -423,7 +503,7 @@ const RESUME_LOCATION = {
       name: "Gaya-Resume.pdf",
       icon: "/images/pdf.png",
       fileType: "pdf",
-      href: "#",
+      href: "files/Gaya_Singh_BD.pdf",
     },
   ],
 };
@@ -467,4 +547,9 @@ const WINDOW_CONFIG = {
   imgfile: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
 };
 
-export { INITIAL_Z_INDEX, WINDOW_CONFIG };
+const createInitialWindows = () =>
+  Object.fromEntries(
+    Object.entries(WINDOW_CONFIG).map(([key, window]) => [key, { ...window }])
+  );
+
+export { INITIAL_Z_INDEX, WINDOW_CONFIG, createInitialWindows };

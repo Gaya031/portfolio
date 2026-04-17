@@ -37,7 +37,7 @@ body {
   }
 
   nav {
-    @apply flex justify-between items-center bg-white/50 backdrop-blur-3xl p-2 px-5 select-none;
+    @apply flex justify-between items-center bg-white/50 dark:bg-black/50 backdrop-blur-3xl p-2 px-5 select-none transition-colors duration-500;
 
     div {
       @apply flex items-center max-sm:w-full max-sm:justify-center gap-5;
@@ -56,8 +56,20 @@ body {
     }
 
     time {
-      @apply text-sm font-medium text-black;
+      @apply text-sm font-medium text-black dark:text-white/80;
     }
+  }
+}
+
+.dark {
+  nav time {
+    @apply text-white/90;
+  }
+  nav ul p {
+    @apply text-white/90;
+  }
+  nav p {
+    @apply text-white/90;
   }
 }
 
@@ -115,7 +127,11 @@ body {
   }
 
   #window-header {
-    @apply flex items-center justify-between px-4 py-3 rounded-t-lg bg-gray-50 border-b border-gray-200 select-none text-sm text-gray-400;
+    @apply flex items-center justify-between px-4 py-3 rounded-t-lg bg-gray-50 dark:bg-[#2d2d30] border-b border-gray-200 dark:border-white/10 select-none text-sm text-gray-400;
+  }
+
+  .sidebar {
+    @apply w-48 bg-gray-50 dark:bg-[#1e1e1e] border-r border-gray-200 dark:border-white/10 flex flex-col p-5 space-y-3;
   }
 
 
@@ -123,11 +139,11 @@ body {
 
 
   #safari {
-  @apply absolute w-3xl top-40 left-40 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
+  @apply absolute w-3xl top-40 left-40 bg-white dark:bg-[#1e1e1e] shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
 
   /* SIDEBAR (Same as Finder) */
   .sidebar {
-    @apply w-48 bg-gray-50 border-r border-gray-200 flex flex-col p-5 space-y-3;
+    @apply w-48 bg-gray-50 dark:bg-[#1e1e1e] border-r border-gray-200 dark:border-white/10 flex flex-col p-5 space-y-3;
 
     h3 {
       @apply text-xs font-medium text-gray-400 mb-1;
@@ -137,11 +153,11 @@ body {
       @apply space-y-1;
 
       .active {
-        @apply bg-blue-100 text-blue-700;
+        @apply bg-blue-100 dark:bg-blue-500/20 text-blue-700 dark:text-blue-400;
       }
 
       .not-active {
-        @apply text-gray-700 hover:bg-gray-200;
+        @apply text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-white/5;
       }
 
       li {
@@ -161,17 +177,17 @@ body {
 
   /* CONTENT AREA (Same as Finder) */
   .content {
-    @apply flex gap-5 p-5 ;
+    @apply flex-1 grid grid-cols-3 content-start gap-6 p-6 min-h-[26rem] overflow-y-auto;
 
     li {
-      @apply flex flex-col items-center text-center cursor-pointer;
+      @apply flex flex-col items-center text-center cursor-pointer rounded-xl p-3 transition-colors hover:bg-gray-100 dark:hover:bg-white/5;
 
       img {
         @apply w-12 h-12 object-contain;
       }
 
       p {
-        @apply text-xs mt-2 text-gray-700;
+        @apply text-xs mt-2 text-gray-700 dark:text-gray-200 break-words w-full;
       }
     }
   }
@@ -349,17 +365,17 @@ body {
     }
 
     .content {
-      @apply flex-1 p-8 bg-white max-w-2xl relative;
+      @apply flex-1 grid grid-cols-3 content-start gap-6 p-8 bg-white max-w-2xl min-h-[26rem] overflow-y-auto;
 
       li {
-        @apply absolute flex items-center flex-col gap-3;
+        @apply flex items-center flex-col gap-3 cursor-pointer rounded-xl p-3 transition-colors hover:bg-gray-100;
 
         img {
-          @apply object-contain object-center size-16 relative group-hover:scale-105;
+          @apply object-contain object-center size-16 relative;
         }
 
         p {
-          @apply text-sm text-center font-medium w-40;
+          @apply text-sm text-center font-medium w-full break-words;
         }
       }
     }

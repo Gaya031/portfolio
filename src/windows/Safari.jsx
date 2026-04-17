@@ -7,6 +7,8 @@ import { Search } from "lucide-react";
 import React, { useEffect } from "react";
 import clsx from "clsx";
 
+const getItemKey = (item) => item.type ?? `${item.kind}-${item.fileType ?? "folder"}-${item.name}`;
+
 const Safari = () => {
   const { activeLocation, setActiveLocation } = useLocationStore();
   const { openWindow } = useWindowStore();
@@ -14,7 +16,7 @@ const Safari = () => {
   // Load LAB as default when Safari opens
   useEffect(() => {
     setActiveLocation(locations.lab);
-  }, []);
+  }, [setActiveLocation]);
 
   // ---------------------------------------------
   // Render sidebar list (Identical to Finder)
@@ -25,11 +27,9 @@ const Safari = () => {
       <ul>
         {items.map((item) => (
           <li
-            key={item.id}
+            key={getItemKey(item)}
             onClick={() => setActiveLocation(item)}
-            className={clsx(
-              item.id === activeLocation.id ? "active" : "not-active"
-            )}
+            className={clsx(item === activeLocation ? "active" : "not-active")}
           >
             <img src={item.icon} className="w-4" alt={item.name} />
             <p className="text-sm font-medium truncate">{item.name}</p>
@@ -43,14 +43,18 @@ const Safari = () => {
   // Clicking on items inside content area
   // ---------------------------------------------
   const openItem = (item) => {
-    if (item.fileType === "pdf") return openWindow("resume");
+    if (item.fileType === "pdf") {
+      return openWindow("resume", null, { parentWindowKey: "safari" });
+    }
 
     if (item.kind === "folder") return setActiveLocation(item);
 
     if (["fig", "url"].includes(item.fileType) && item.href)
       return window.open(item.href, "_blank");
 
-    return openWindow(`${item.fileType}${item.kind}`, item);
+    return openWindow(`${item.fileType}${item.kind}`, item, {
+      parentWindowKey: "safari",
+    });
   };
 
   // ---------------------------------------------
@@ -76,8 +80,7 @@ const Safari = () => {
         <ul className="content">
           {activeLocation?.children?.map((item) => (
             <li
-              key={item.id}
-              className={item.position}
+              key={`${activeLocation.name}-${getItemKey(item)}`}
               onClick={() => openItem(item)}
             >
               <img src={item.icon} alt={item.name} />
