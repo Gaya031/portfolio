@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/next"
 import { BootScreen, CursorSpotlight, Dock, Home, Navbar, Welcome } from '#components';
 import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
@@ -90,6 +91,7 @@ const App = () => {
           <Photos />
           
           <Home />
+          <Analytics />
         </main>
       )}
     </div>
