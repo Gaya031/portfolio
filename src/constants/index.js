@@ -553,7 +553,7 @@ const RESUME_LOCATION = {
       name: "Gaya-Resume.pdf",
       icon: "/images/pdf.png",
       fileType: "pdf",
-      href: "files/Gaya_Singh_BD.pdf",
+      href: "files/Gaya_Singh_FD.pdf",
     },
   ],
 };

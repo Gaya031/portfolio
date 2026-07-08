@@ -18,7 +18,7 @@ const Resume = () => {
         <WindowControls target="resume" />
         <h2>Resume.pdf</h2>
         <a
-          href="files/Gaya_Singh_BD.pdf"
+          href="files/Gaya_Singh_FD.pdf"
           download
           className="cursor-pointer"
           title="Download resume"
@@ -26,7 +26,7 @@ const Resume = () => {
           <Download className="icon" />
         </a>
       </div>
-      <Document file="files/Gaya_Singh_BD.pdf">
+      <Document file="files/Gaya_Singh_FD.pdf">
         <Page pageNumber={1} renderTextLayer renderAnnotationLayer />
       </Document>
     </>
