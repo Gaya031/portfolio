@@ -5,15 +5,12 @@ import useWindowStore from "#store/window";
 import useLocationStore from "#store/location";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import useThemeStore from "#store/theme";
 
 const Navbar = () => {
   const { openWindow } = useWindowStore();
   const { setActiveLocation } = useLocationStore();
-  const { theme, toggleTheme } = useThemeStore();
   const navRef = useRef(null);
   const timeRef = useRef(null);
-  const isDark = theme === "dark";
 
   // Slide-in entrance
   useGSAP(() => {
@@ -28,7 +25,7 @@ const Navbar = () => {
     const el = timeRef.current;
     if (!el) return undefined;
 
-    const baseColor = isDark ? "#f3f4f6" : "#111827";
+    const baseColor = "#111827";
     el.style.color = baseColor;
 
     const pulse = () => {
@@ -42,7 +39,7 @@ const Navbar = () => {
     pulse();
     const id = setInterval(pulse, 60000);
     return () => clearInterval(id);
-  }, [isDark]);
+  }, []);
 
   const handleNavClick = (name, type) => {
     if (name === "About") {
@@ -57,32 +54,18 @@ const Navbar = () => {
   };
 
   return (
-    <nav
-      ref={navRef}
-      style={{ opacity: 0 }}
-      className={isDark ? "text-slate-100" : "text-slate-900"}
-    >
+    <nav ref={navRef} style={{ opacity: 0 }} className="text-slate-900">
       <div>
-        <img
-          src="/images/logo.svg"
-          alt="logo"
-          className={`transition-all duration-300 ${isDark ? "brightness-0 invert" : ""}`}
-        />
-        <p className={`font-bold transition-colors duration-300 ${isDark ? "text-slate-100" : "text-slate-900"}`}>
-          Gaya's Portfolio
-        </p>
+        <img src="/images/logo.svg" alt="logo" />
+        <p className="font-bold text-slate-900">Gaya's Portfolio</p>
         <ul>
           {navLinks.map(({ id, name, type }) => (
             <li
               key={id}
               onClick={() => handleNavClick(name, type)}
-              className={`rounded-md px-2 py-1 transition-colors duration-300 ${
-                isDark ? "hover:bg-white/10" : "hover:bg-black/5"
-              }`}
+              className="rounded-md px-2 py-1 transition-colors duration-300 hover:bg-black/5"
             >
-              <p className={`transition-colors duration-300 ${isDark ? "text-slate-100" : "text-slate-900"}`}>
-                {name}
-              </p>
+              <p className="text-slate-900">{name}</p>
             </li>
           ))}
         </ul>
@@ -93,24 +76,14 @@ const Navbar = () => {
           {navIcons.map(({ id, img }) => (
             <li
               key={id}
-              onClick={id === 4 ? toggleTheme : undefined}
-              className={`rounded-md p-1 transition-colors duration-300 ${
-                id === 4 ? "cursor-pointer" : ""
-              } ${isDark ? "hover:bg-white/10" : "hover:bg-black/5"}`}
+              className="rounded-md p-1 transition-colors duration-300 hover:bg-black/5"
             >
-              <img
-                src={img}
-                className={`transition-all duration-300 ${isDark ? "brightness-0 invert" : ""}`}
-                alt={`icon-${id}`}
-              />
+              <img src={img} alt={`icon-${id}`} />
             </li>
           ))}
         </ul>
 
-        <time
-          ref={timeRef}
-          className={`transition-colors duration-300 ${isDark ? "text-slate-100" : "text-slate-900"}`}
-        >
+        <time ref={timeRef} className="text-slate-900">
           {dayjs().format("ddd MMM D h:mm A")}
         </time>
       </div>

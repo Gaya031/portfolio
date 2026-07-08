@@ -37,19 +37,19 @@ const ContextMenu = () => {
   return (
     <div 
       ref={menuRef}
-      className="fixed z-[10000] w-56 bg-white/70 dark:bg-black/70 backdrop-blur-xl border border-white/20 dark:border-white/10 rounded-xl shadow-2xl py-1.5 overflow-hidden select-none"
+      className="fixed z-[10000] w-56 bg-white/70 backdrop-blur-xl border border-white/20 rounded-xl shadow-2xl py-1.5 overflow-hidden select-none"
       style={{ left: x, top: y }}
     >
       {menuItems.map((item, idx) => (
         <React.Fragment key={idx}>
           <div 
-            className="flex items-center gap-3 px-3 py-1.5 hover:bg-blue-500 hover:text-white dark:hover:bg-blue-600 transition-colors cursor-default text-[13px] font-medium text-gray-800 dark:text-gray-200"
+            className="flex items-center gap-3 px-3 py-1.5 hover:bg-blue-500 hover:text-white transition-colors cursor-default text-[13px] font-medium text-gray-800"
             onClick={item.action}
           >
             <span className="opacity-70">{item.icon}</span>
             <span className="flex-1">{item.label}</span>
           </div>
-          {item.divider && <div className="h-[1px] bg-gray-200/50 dark:bg-gray-700/50 my-1 mx-3" />}
+          {item.divider && <div className="h-[1px] bg-gray-200/50 my-1 mx-3" />}
         </React.Fragment>
       ))}
     </div>

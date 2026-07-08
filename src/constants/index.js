@@ -15,7 +15,6 @@ const navIcons = [
   { id: 1, img: "/icons/wifi.svg" },
   { id: 2, img: "/icons/search.svg" },
   { id: 3, img: "/icons/user.svg" },
-  { id: 4, img: "/icons/mode.svg" },
 ];
 
 // =============================================================
@@ -36,27 +35,27 @@ const dockApps = [
 const techStack = [
   {
     category: "Languages",
-    items: ["Python", "Java", "SQL", "JavaScript"],
+    items: ["Python", "Java", "SQL", "JavaScript", "TypeScript"],
   },
   {
     category: "Frontend",
-    items: ["React.js", "Next.js", "JavaScript", "Tailwind", "GSAP"],
+    items: ["React.js", "Next.js", "JavaScript", "Tailwind", "GSAP", "HTML", "CSS"],
   },
   {
     category: "Backend",
     items: ["Node.js", "Express", "FastAPI", "REST"],
   },
-  // {
-  //   category: "AI/ML",
-  //   items: ["LLMs", "LangChain", "Vector Search", "RAG Systems"],
-  // },
+  {
+    category: "AI",
+    items: ["LangChain", "RAG", "Vector Search", "Prompt Engineering"],
+  },
   {
     category: "Databases",
-    items: ["PostgreSQL", "MongoDB"],
+    items: ["PostgreSQL", "MongoDB", "Redis"],
   },
   {
     category: "DevOps",
-    items: ["Docker", "Redis", "Git", "GitHub", "Vercel", "Render"],
+    items: ["Docker", "Redis", "Git", "GitHub", "Vercel", "Render", "Cloudinary"],
   },
 ];
 
@@ -127,6 +126,54 @@ const WORK_LOCATION = {
   icon: "/icons/work.svg",
   kind: "folder",
   children: [
+    // PROJECT – Cortex (AI Code Intelligence)
+    {
+      id: 11,
+      name: "Cortex - AI-Powered Code Intelligence Platform",
+      icon: "/images/folder.png",
+      kind: "folder",
+      desktopPosition: desktopPosition("23rem", "13rem"),
+      children: [
+        {
+          id: 1,
+          name: "About.txt",
+          icon: "/images/txt.png",
+          kind: "file",
+          fileType: "txt",
+          position: "top-8 left-10",
+          description: [
+            "Cortex is an AI-powered code intelligence platform that understands an entire software project instead of just a single file.",
+            "It indexes repositories into a knowledge graph, builds semantic embeddings, tracks architectural relationships, and gives project-aware AI assistance. Rather than acting as a simple code generator, Cortex helps developers understand large codebases, explain complex flows, analyze architecture, and make safer code changes using project-wide context.",
+            "Key highlights:",
+            " - Project-wide code understanding",
+            " - Knowledge graph generation",
+            " - Semantic code search",
+            " - AI-powered code explanation",
+            " - Architecture visualization",
+            " - Context-aware code assistance",
+          ],
+        },
+        {
+          id: 2,
+          name: "Demo.link",
+          icon: "/images/safari.png",
+          kind: "file",
+          fileType: "url",
+          href: "#",
+          position: "top-10 right-20",
+        },
+        {
+          id: 3,
+          name: "Screenshot.png",
+          icon: "/images/image.png",
+          kind: "file",
+          fileType: "img",
+          position: "top-52 right-80",
+          imageUrl: "Coming Soon",
+        },
+      ],
+    },
+
     // PROJECT 1 – Multi-vendor E-commerce
     {
       id: 5,
@@ -483,6 +530,9 @@ const ABOUT_LOCATION = {
         "I love designing architectures, solving hard backend problems, and experimenting with AI + automation.",
         "Clean code, fast responses, and tough problem-solving are my favorite things.",
         "If I'm not building something, I'm learning something new - and then building again.",
+        "Hey, I'm Gaya Singh, a Full Stack Developer focused on building scalable web applications and AI-powered products.",
+        "My primary stack is MERN, FastAPI, and modern AI tooling. I enjoy building production-grade backend systems, AI-powered applications, and solving challenging engineering problems.",
+        "Building scalable web applications and AI-powered developer tools with MERN, FastAPI, and modern AI.",
       ],
     },
   ],

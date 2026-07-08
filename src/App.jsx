@@ -5,15 +5,12 @@ import { Draggable } from 'gsap/Draggable';
 import { Finder, Resume, Safari, Terminal, Text, Image, Contact, Photos } from '#windows';
 import MobileApp from "./mobile/MobileApp"; // New Mobile Entry Point
 import DesktopWidgets from "./components/DesktopWidgets";
-import useThemeStore from "#store/theme";
 import useContextMenuStore from "#store/contextMenu";
 import ContextMenu from "./components/ContextMenu";
 gsap.registerPlugin(Draggable);
 
 const ParallaxBackground = () => {
   const bgRef = useRef(null);
-  const { theme } = useThemeStore();
-  const wallpaperUrl = theme === "dark" ? "/images/dark-wallpaper.jpg" : "/images/wallpaper.png";
 
   useEffect(() => {
     const el = bgRef.current;
@@ -39,12 +36,11 @@ const ParallaxBackground = () => {
       ref={bgRef}
       className="fixed inset-0 z-[-1]"
       style={{
-        backgroundImage: `url('${wallpaperUrl}')`,
+        backgroundImage: "url('/images/wallpaper.png')",
         backgroundSize: "calc(100% + 36px)",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
         willChange: "transform",
-        transition: "background-image 0.5s ease-in-out"
       }}
     />
   );
@@ -53,20 +49,13 @@ const ParallaxBackground = () => {
 const App = () => {
   const [booted, setBooted] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const { openMenu } = useContextMenuStore();
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 768);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-
-  const { theme } = useThemeStore();
-  const { openMenu } = useContextMenuStore();
-
-  useEffect(() => {
-    document.documentElement.classList.toggle("dark", theme === "dark");
-    document.body.classList.toggle("dark", theme === "dark");
-  }, [theme]);
 
   // Show Mobile Layout directly on small screens without Mac boot screen
   if (isMobile) {
@@ -79,13 +68,10 @@ const App = () => {
   };
   
   return (
-    <div className={theme}>
+    <div>
       {!booted && <BootScreen onComplete={() => setBooted(true)} />}
       {booted && (
-        <main 
-          className="dark:bg-black/20 transition-colors duration-500"
-          onContextMenu={handleContextMenu}
-        >
+        <main onContextMenu={handleContextMenu}>
           <ContextMenu />
           <CursorSpotlight />
           <ParallaxBackground />
