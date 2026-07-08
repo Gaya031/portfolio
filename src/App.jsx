@@ -1,4 +1,4 @@
-import { Analytics } from "@vercel/analytics/next"
+import { Analytics } from "@vercel/analytics/react"
 import { BootScreen, CursorSpotlight, Dock, Home, Navbar, Welcome } from '#components';
 import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
